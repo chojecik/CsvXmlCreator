@@ -1,0 +1,23 @@
+<div class="form">
+  <form #textForm="ngForm" (ngSubmit)="postText(textForm)">
+    <div class="group">
+      <label for="text">Input text below</label>
+      <div>
+        <textarea autosize [minRows]="5" type="text" id="area" class="md-textarea md-textarea-auto height-text" placeholder="Input text here..." name="input" tmFocus [(ngModel)]="input" required minlength="1"></textarea>
+        <input type="radio" class="radio-button" id="type1" name="type" [ngModel]="type" value="1" required> XML
+        <input type="radio" class="radio-button" id="type2" name="type" [ngModel]="type" value="2" required> CSV
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary center-block" [disabled]="!textForm.form.valid">Parse text</button>
+    </div>
+  </form>
+
+  <div *ngIf="isTextSerialized" class="group">
+    <textarea class="md-textarea md-textarea-auto height-text" autosize [readonly]="true">{{serializedText}}</textarea>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary center-block" (click)="download()">Download file</button>
+      <div class="divider"></div>
+      <button type="button" class="btn btn-primary center-block" (click)="clear()">Clear</button>
+    </div>
+  </div>
