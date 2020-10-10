@@ -11,6 +11,10 @@ namespace CsvXmlCreator.Services
     {
         public byte[] GenerateFile(string serializedText)
         {
+            if(serializedText == null)
+            {
+                return null;
+            }
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(serializedText);
 
@@ -21,7 +25,7 @@ namespace CsvXmlCreator.Services
         {
             if (text == null)
             {
-                return string.Empty;
+                return null;
             }
 
             var xmlSerializer = new XmlSerializer(typeof(Text));

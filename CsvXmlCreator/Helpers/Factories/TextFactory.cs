@@ -12,6 +12,10 @@ namespace CsvXmlCreator.Helpers.Factories
         
         public static Text GenerateText(string input)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                return null;
+            }
             input = Regex.Replace(input, @"\s", " ");
             var sentences = input.Split(seperators).Where(x => !string.IsNullOrEmpty(x));
 

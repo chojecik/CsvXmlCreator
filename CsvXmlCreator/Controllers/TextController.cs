@@ -22,7 +22,7 @@ namespace CsvXmlCreator.Controllers
         [HttpPost("create")]
         public IActionResult Post([FromBody]FormModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || model.Input == null)
             {
                 return BadRequest(ModelState);
             }
@@ -48,7 +48,7 @@ namespace CsvXmlCreator.Controllers
         [HttpPost("download")]
         public IActionResult Download([FromBody]FormModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || model.Input == null)
             {
                 return BadRequest(ModelState);
             }

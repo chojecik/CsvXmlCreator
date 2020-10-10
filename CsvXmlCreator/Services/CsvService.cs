@@ -1,9 +1,7 @@
 ﻿using CsvXmlCreator.Interfaces;
 using CsvXmlCreator.Models;
 using System.Text;
-using System;
 using System.Linq;
-using System.IO;
 
 namespace CsvXmlCreator.Services
 {
@@ -11,11 +9,20 @@ namespace CsvXmlCreator.Services
     {
         public byte[] GenerateFile(string serializedText)
         {
+            if (serializedText == null)
+            {
+                return null;
+            }
             return Encoding.Default.GetBytes(serializedText);
         }
 
         public string SerializeObject(Text text)
         {
+            if (text?.Sentences == null)
+            {
+                return null;
+            }
+
             var sb = new StringBuilder();
 
             var maxWordsCount = text.Sentences.Max(s => s.Words.Count);
